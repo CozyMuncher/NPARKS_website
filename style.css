@@ -128,14 +128,7 @@ mark {
   --white: #f9f9f9;
   --black: #36383F;
   --gray: #85888C;
-} 
-
-.logo{
-  display: inline-block;
-  color: var(--white);
-  font-size: 20px;
-  margin-left: 10px;
-}
+} /* variables*/
 
 /* Reset */
 *{
@@ -143,45 +136,49 @@ mark {
   padding: 0;
   box-sizing: border-box;
 }
-
+body{
+  background-color: var(--white);
+  font-family: "Poppins", sans-serif;
+}
 a{
   text-decoration: none;
 }
-
 ul{
   list-style: none;
 }
-
 .header{
-  background-color: white;
+  background-color: var(--black);
   box-shadow: 1px 1px 5px 0px var(--gray);
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 10;
-  margin-bottom: 40px;
+}
+/* Logo */
+.logo{
+  display: inline-block;
+  color: var(--white);
+  font-size: 60px;
+  margin-left: 10px;
 }
 
 .nav{
   width: 100%;
   height: 100%;
-  position: sticky;
-  top: 0;
+  position: fixed;
   background-color: var(--black);
   overflow: hidden;
   z-index: 10;
+
 }
 .menu a{
   display: block;
   padding: 30px;
   color: var(--white);
-  z-index: 10;
 }
-
 .menu a:hover{
   background-color: var(--gray);
 }
-
 .nav{
   max-height: 0;
   transition: max-height .5s ease-out;
@@ -190,7 +187,7 @@ ul{
   cursor: pointer;
   float: right;
   padding: 40px 20px;
-}
+}/* Style label tag */
 
 .hamb-line {
   background: #2B512F;
@@ -199,7 +196,7 @@ ul{
   position: relative;
   width: 24px;
 
-} 
+} /* Style span tag */
 
 .hamb-line::before,
 .hamb-line::after{
@@ -211,18 +208,16 @@ ul{
   transition: all .2s ease-out;
   width: 100%;
 }
-
 .hamb-line::before{
   top: 5px;
 }
-
 .hamb-line::after{
   top: -5px;
 }
 
 .side-menu {
   display: none;
-}
+} /* Hide checkbox */
 
 .side-menu:checked ~ nav{
   max-height: 100%;
@@ -246,7 +241,7 @@ ul{
   .nav{
       max-height: none;
       top: 0;
-      position: sticky;
+      position: relative;
       float: right;
       width: fit-content;
       background-color: transparent;
@@ -258,12 +253,12 @@ ul{
   .menu a:hover{
       background-color: transparent;
       color: var(--gray);
+
   }
 
   .hamb{
       display: none;
   }
-  
 }
 /* #endregion */
 
@@ -279,7 +274,6 @@ ul{
   position: absolute;
   bottom: 85px;
   left: 50px;
-  ;
 }
 
 /* #endregion */
