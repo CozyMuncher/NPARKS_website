@@ -1,8 +1,4 @@
-// #region menu
-function toggleMobileMenu(menu) {
-  menu.classList.toggle('open');
-}
-// #endregion
+
 
 //#region slideshow
 let slideIndex = 1;

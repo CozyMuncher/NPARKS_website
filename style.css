@@ -3,7 +3,7 @@
 
 body {
   background-color: white;
-  color: white;
+  color: black;
   font-family: "Poppins", sans-serif;
 }
 
@@ -277,3 +277,15 @@ ul{
 }
 
 /* #endregion */
+
+/* #region contianer */
+
+.container {
+  padding: 40px;
+}
+
+.container-bg{
+  padding: 10px;
+  background-color: #99a682;
+}
+/* # endregion */
