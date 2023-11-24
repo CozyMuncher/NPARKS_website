@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../../style.css" />
   <link
@@ -17,9 +16,11 @@
     <!-- Logo -->
     <a href="../home.html" class="logo">
       <table>
-        <td><p>ㅤ</p></td>
-        <td><img src="../../assets/images/logo.png" width="40px" height="auto"></td>
-        <td><h3>NParks</h3></td>
+        <tr>
+          <td><p>ㅤ</p></td>
+          <td><img src="../../assets/images/logo.png" width="40px" height="auto"></td>
+          <td><h3>NParks</h3></td>
+        </tr>
       </table>
     </a>
     <!-- Hamburger icon -->
@@ -38,17 +39,81 @@
   <!-- #endregion -->
 
   <!-- #park-details -->
+  <h2 style="text-align: center; font-size: 30px; color: #2B512F;">Admiralty Park</h2>
 
-  <!-- Find Admiraly park imgs eeee -->
-
+  <!-- Find Admiralty park imgs eeee -->
+  <!-- #region slideshow-1 -->
   <div class="container">
     <style>
-        .container {
-            padding: 25px;
-        }
+      .container{
+        padding: 25px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
     </style>
-    <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Admiralty Park</mark></h4>
+
+    <div class="slideshow-container">
+      <!-- Full-width images with number and caption text -->
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 3</div>
+        <img src="../../assets/images/Parks_Images/Admiralty Park play areas.jpg" style="width:100%">
+        <div class="text"><p style="background-color: rgba(0, 0, 0, 0.5);">Play Areas</p></div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 3</div>
+        <img src="../../assets\images\Parks_Images\Admiralty Park playground.jpg" style="width:100%">
+        <div class="text"><p style="background-color: rgba(0, 0, 0, 0.5);">Family Terracing Play</p></div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 3</div>
+        <img src="../../assets\images\Parks_Images\Hotspot for nature lovers.JPG" style="width:100%">
+        <div class="text"><p style="background-color: rgba(0, 0, 0, 0.5);">Photography</p></div>
+      </div>
+      <!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
   </div>
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+    }
+  </script>
+  <!-- #endregion -->
 
   <!-- #endregion -->
 
@@ -76,14 +141,97 @@
       </tr>
       <tr>
         <td class="custom-column">
-          <p>31 Riverside Road, Singapore 730000</p>
+          <p style="text-align: center;">31 Riverside Road, Singapore 730000</p>
         </td>
-        <td class="ćustom-column">
-          <p>Park Size: 27 Hectares</p>
+        <td class="custom-column">
+          <p style="text-align: center;"><b>Park Size:</b> 27 Hectares</p>
+          <p style="text-align: center;"><b>Lighting Hours:</b>  7pm to 7am (for playground area). No lights in the forested area after dark.</p>
+          <p style="text-align: center;"><b>Businesses:</b> Shiok Garden Hotpot & BBQ Buffet</p>
+          <p style="text-align: center;"><b>Venues For Booking:</b> Lawn Area, Amphitheatre, Activity Plaza</p>
+          <p style="text-align: center;"><b>Accessibility Info:</b> Wheelchair-friendly</p>
         </td>
       </tr>
     </table>
   </div>
-  <!-- #endregion -->
+
+  <div class=""container>
+    <table class="custom-table">
+      <tr>
+        <td>
+          <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Things To Do</mark></h4>
+        </td>
+        <td>
+          <tr>
+            <td style="border-bottom: 1px solid #000; padding-bottom: 30px;">
+              <img src="../../assets/images/Parks_Images/Admiralty Park Nature Playgarden.png" width="230" height="auto">
+            </td>
+            <td style="text-align: left; padding-left: 5px; border-bottom: 1px solid #000;">
+              <h6 style="font-size: 15px;">Nature Playground</h6>
+              <p style="font-size: 7px;">ㅤ</p>
+              <p style="font-size: 15px;">The playground here features an exciting range of 26 slides and a diverse array of other play equipment. </p>
+              <p style="font-size: 7px;">ㅤ</p>
+              <p style="font-size: 15px;">The playground also has a unique mangrove theme, inspired by the mangrove habitat found at the nature area of Admiralty Park. </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="border-bottom: 1px solid #000; padding-top: 20px;">
+              <img src="../../assets/images/Parks_Images/AP Jogging.JPG" width="230" height="auto">
+            </td>
+            <td style="text-align: left; padding-left: 5px; border-bottom: 1px solid #000;">
+              <h6 style="font-size: 15px;">Walking & Jogging</h6>
+              <p style="font-size: 7px;">ㅤ</p>
+              <p style="font-size: 15px;">Take a stroll or jog and enjoy the wide range of biodiversity that the park has to offer.</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="border-bottom: 1px solid #000; padding-top: 20px;">
+              <img src="../../assets/images/Parks_Images/Admiralty Park.jpg" width="230" height="auto">
+            </td>
+            <td style="text-align: left; padding-left: 5px; border-bottom: 1px solid #000;">
+              <h6 style="font-size: 15px;">Photography</h6>
+              <p style="font-size: 7px;">ㅤ</p>
+              <p style="font-size: 15px;">Shutterbugs would delight in the many photo opportunities abound at Admiralty Park, from flora and fauna, to people shots with nature as the backdrop.</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="border-bottom: 1px solid #000; padding-top: 20px;">
+              <img src="../../assets/images/Parks_Images/Admiralty Park 1.jpg" width="230" height="auto">
+            </td>
+            <td style="text-align: left; padding-left: 5px; border-bottom: 1px solid #000;">
+              <h6 style="font-size: 15px;">Bird Watching</h6>
+              <p style="font-size: 7px;">ㅤ</p>
+              <p style="font-size: 15px;">Bird watchers will have chance to encounter over 40 different bird species in Admiralty Park.</p>
+            </td>
+          </tr>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="container">
+    <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
+    <style>
+      body { margin: 0; }
+      #map { height: 300px; }
+    </style>
+
+<h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Map</mark></h4>
+
+  <div id="map" />
+    <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
+    <script>
+      const apiKey = "v1.public.eyJqdGkiOiI2NzE3NjExNS1mMjJmLTQyMDItYjY2My01NDBjNDg1ZTg5YWQifZymZOgjUZiwvElI8Kq7qH8JNuFmppXUejNHf3bVv8zY8X2AR2K8uo25DlxVwkYm-QqcujutnKNzgUPa-ITNa7972AFq9AD3MGxvjXfRRISmPEFYrdS4dmkDzTgYBTV0JQBgTjY2LliFI_fZNehVoLHVuSBNdBDl0ScjHwbrY3U4v-352B-rdaC4LioFwhsjSpytrYlDFo0DjPkkGq3Q2PMAjcCuFWriFgRhcFrwR_e-Z5qLhDkn3nn-XnKh73xiZt2hKgNR720ciwR_WiQYE3fp1LKLWI6r8tX4_bm756GNTFB8zVqTFMLBz9tzSwkJiAJrR08qh7vYuAnZ0_QEQf0.MzRjYzZmZGUtZmY3NC00NDZiLWJiMTktNTc4YjUxYTFlOGZi";
+      const mapName = "NParks_Map";
+      const region = "ap-southeast-1";
+
+      const map = new maplibregl.Map({
+        container: "map",
+        style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
+        center: [103.78069406466989, 1.44674655352457],
+        zoom: 14
+      });
+      map.addControl(new maplibregl.NavigationControl(), "top-left");
+    </script>
+  </div>
 </body>
 </html>
