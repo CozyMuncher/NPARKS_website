@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+  <title>NParks</title>
+</head>
+<body>
+  <!-- #region header-->
+  <header>
+    <!-- Logo -->
+    <a href="../home.html" class="logo">
+      <table>
+        <tr>
+          <td><p>ㅤ</p></td>
+          <td><img src="../../assets/images/logo.png" width="40px" height="auto"></td>
+          <td><h3>NParks</h3></td>
+        </tr>
+      </table>
+    </a>
+    <!-- Hamburger icon -->
+    <input class="side-menu" type="checkbox" id="side-menu"/>
+    <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+    <!-- Menu -->
+    <nav class="nav">
+        <ul class="menu">
+            <li><a href="../parks.html">Parks & Trails</a></li>
+            <li><a href="../maps.html">Maps</a> </li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../chat.html">Chat</a></li>
+        </ul>
+    </nav>
+  </header>
+  <!-- #endregion -->
+
+  <!-- #park-details -->
+  <h2 style="text-align: center; font-size: 30px; color: #2B512F;">Botanic Gardens</h2>
+
+  <!-- Find Admiralty park imgs eeee -->
+  <!-- #region slideshow-1 -->
+  <div class="container">
+    <style>
+      .container{
+        padding: 25px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+    </style>
+
+    <div class="slideshow-container">
+      <!-- Full-width images with number and caption text -->
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 5</div>
+        <img src="../../assets/images/Parks_Images/evolution garden.JPG" style="width:100%">
+        <div class="text"><p style="background-color: rgba(0, 0, 0, 0.5);">Evolution Garden</p></div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 5</div>
+        <img src="../../assets\images\Parks_Images\SBG  Swan Lake.jpg" style="width:100%">
+        <div class="text"><p style="background-color: rgba(0, 0, 0, 0.5);">Swan Lake</p></div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 5</div>
+        <img src="../../assets\images\Parks_Images\SBG10_047alt.jpg" style="width:100%">
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">4 / 5</div>
+        <img src="../../assets\images\Parks_Images\SBGTanglin_Gate.jpg" style="width:100%">
+        <div class="text"><p style="background-color: rgba(0, 0, 0, 0.5);">Tanglin Gate</p></div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">5 / 5</div>
+        <img src="../../assets\images\Parks_Images\SLO 190610 003a.JPG" style="width:100%">
+        <div class="text"><p style="background-color: rgba(0, 0, 0, 0.5);">Choir</p></div>
+      </div>
+      <!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+    }
+  </script>
+  <!-- #endregion -->
+
+  <!-- #endregion -->
+
+  <!-- #region infomation-->
+  <div class="container">
+    <style>
+        .container {
+            padding: 25px;
+        }
+        .custom-table {
+          width: 100%;
+        }
+        .custom-column {
+          width: 50%;
+        }
+    </style>
+    <table class="custom-table">
+      <tr>
+        <td class="custom-column" style="border-bottom: 1px solid #000; ">
+          <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Location</mark></h4>
+        </td>
+        <td class="custom-column" style="border-bottom: 1px solid #000; ">
+          <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Infomation</mark></h4>
+        </td>
+      </tr>
+      <tr>
+        <td class="custom-column">
+          <p style="text-align: center;">1 Cluny Road, Singapore 259569</p>
+        </td>
+        <td class="custom-column">
+          <p style="text-align: center;"><b>Opening Hours:</b> 5am - 12 midnight daily</p>
+          <p style="text-align: center;"><b>Accessibility Info:</b> Wheelchair-friendly, Dogs allowed, Playgrounds</p>
+          <div style="display: flex; align-items: center; justify-content: center; background-color: yellowgreen;">
+            <img src="../../assets/images/omg are you smoking Its illlegal in this park you know you son of a - hey i cant say that!.png" width="20px" height="auto">
+            <p style="margin-left: 10px; font-size: 15px; text-align: center;"><b>Botanic Gardens is a smoke-free park</b></p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="container">
+    <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Things To Do</mark></h4>
+    <table class="custom-table">
+      <tr>
+        <td>
+          <tr>
+            <td style="border-bottom: 1px solid #000; padding-bottom: 30px;">
+              <img src="../../assets/images/Parks_Images/SBG bandstand.jpg" width="230" height="auto">
+            </td>
+            <td style="text-align: left; padding-left: 5px; border-bottom: 1px solid #000;">
+              <h6 style="font-size: 15px;">Go on a Walking Trail of the Gardens</h6>
+              <p style="font-size: 7px;">ㅤ</p>
+              <p style="font-size: 15px;">There is so much to explore and see in the Singapore Botanic Gardens. We have a range of walking trail guides that you can refer to if you wish to explore the Gardens.</p>
+              <p style="font-size: 7px;">ㅤ</p>
+              <p style="font-size: 15px;">There is so much to explore and see in the Singapore Botanic Gardens. We have a range of walking trail guides that you can refer to if you wish to explore the Gardens.</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="border-bottom: 1px solid #000; padding-top: 20px;">
+              <img src="../../assets/images/Parks_Images/Guidedtours_2.jpg" width="230" height="auto">
+            </td>
+            <td style="text-align: left; padding-left: 5px; border-bottom: 1px solid #000;">
+              <h6 style="font-size: 15px;">Guided Walks</h6>
+              <p style="font-size: 7px;">ㅤ</p>
+              <p style="font-size: 15px;">There is so much to explore and see in the Singapore Botanic Gardens. We have a range of walking trail guides that you can refer to if you wish to explore the Gardens.</p>
+            </td>
+          </tr>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="container">
+    <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
+    <style>
+      body { margin: 0; }
+      #map { height: 300px; }
+    </style>
+
+<h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Map</mark></h4>
+
+  <div id="map" />
+    <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
+    <script>
+      const apiKey = "api key here";
+      const mapName = "NParks_Map";
+      const region = "ap-southeast-1";
+
+      const map = new maplibregl.Map({
+        container: "map",
+        style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
+        center: [103.81639628261368, 1.3150167065491134],
+        zoom: 13.5
+      });
+      map.addControl(new maplibregl.NavigationControl(), "top-left");
+    </script>
+  </div>
+</body>
+</html>
