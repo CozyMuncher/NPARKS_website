@@ -4,7 +4,7 @@
   "description": "This is a project to build a wayfinding app for NParks using AWS Services and Cloud Computing.",
   "main": "html/index.html",
   "scripts": {
-    "open": "node openHtml.mjs"
+    "start": "node openHtml.mjs"
   },
   "keywords": [],
   "author": "",
