@@ -2,10 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
 
 body {
-  background-color: white;
+  background-color: #9AD9DB;
   color: black;
   font-family: "Poppins", sans-serif;
 }
+
 
 h1 {
   color: #2B512F;
@@ -26,8 +27,8 @@ h4 {
 }
 
 mark {
-  background-color: rgb(255, 255, 255);
-  color: #2B512F;
+  background-color: #e5dbd9;
+  color: #218b82;
 }
 
 /* #region slideshow-1*/
@@ -251,7 +252,7 @@ ul{
       float: left;
   }
   .menu a:hover{
-      background-color: transparent;
+      background-color: #9ad9db;
       color: var(--gray);
 
   }
@@ -267,7 +268,7 @@ ul{
 .banner {
   position: relative;
   text-align: center;
-  color: white;
+  color: #9AD9DB;
 }
 
 .bottom-left {

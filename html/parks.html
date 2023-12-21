@@ -12,6 +12,11 @@
   <title>NParks</title>
 </head>
 <body>
+  <style>
+    body{
+      background-color: #98d4bb;
+    }
+  </style>
   <!-- #region header-->
   <header>
     <!-- Logo -->
@@ -73,8 +78,9 @@
     <div id="result-container">
       <ul id="itemList">
         <li><a href="parks/Admiralty-Park.html" style="text-decoration: none;"><div class="item-container"><div class="item"><p style="color:black;">Admiralty Park</p></div></div></a></li>
-        <li><a href="parks/Jurong-Lake-Gardens.html" style="text-decoration: none;"><div class="item-container"><div class="item"><p style="color:black;">Jurong Lake Gardens</p></div></div></a></li>
         <li><a href="parks/Botanic-Gardens.html" style="text-decoration: none;"><div class="item-container"><div class="item"><p style="color:black;">Botanic Gardens</p></div></div></a></li>
+        <li><a href="parks/Fort-Canning-Park.html" style="text-decoration: none;"><div class="item-container"><div class="item"><p style="color:black;">Fort Canning Park</p></div></div></a></li>
+        <li><a href="parks/Jurong-Lake-Gardens.html" style="text-decoration: none;"><div class="item-container"><div class="item"><p style="color:black;">Jurong Lake Gardens</p></div></div></a></li>
       </ul>
     </div>
 
@@ -83,6 +89,8 @@
       #search-container {
         text-align: center;
         color: black;
+        position: relative;
+        margin: 20px 0;
       }
 
       #result-container {
@@ -92,15 +100,27 @@
 
       #searchInput {
         width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        outline: none;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s, border-color 0.3s;
       }
 
+      #searchInput:focus{
+        border-color: #218B82; /* Change border color on focus */
+        box-shadow: 0 2px 5px rgba(33, 139, 130, 0.3); /* Add a subtle box shadow on focus */
+      }
+      
       .item-container {
       border: 1px solid grey; /* Grey border for the item container */
       }
 
       .item {
       padding: 10px; /* Padding inside each item container */
-      background-color: rgb(158, 192, 140);
+      background-color: #E5DBD9;
       }
 
       .container{ padding: 25px;}

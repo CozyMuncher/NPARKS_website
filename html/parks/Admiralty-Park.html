@@ -11,6 +11,11 @@
   <title>NParks</title>
 </head>
 <body>
+  <style>
+    body{
+      background-color: #98D4BB;
+    }
+  </style>
   <!-- #region header-->
   <header>
     <!-- Logo -->
@@ -148,8 +153,7 @@
           <p style="text-align: center;"><b>Lighting Hours:</b>  7pm to 7am (for playground area). No lights in the forested area after dark.</p>
           <p style="text-align: center;"><b>Businesses:</b> Shiok Garden Hotpot & BBQ Buffet</p>
           <p style="text-align: center;"><b>Venues For Booking:</b> Lawn Area, Amphitheatre, Activity Plaza</p>
-          <p style="text-align: center;"><b>Accessibility Info:</b> Wheelchair-friendly</p>
-          <p style="text-align: center;"><b>Accessibility for children:</b>Good for kids</p>
+          <p style="text-align: center;"><b>Accessibility Info:</b> Wheelchair-friendly, Playgrounds</p>
         </td>
       </tr>
     </table>
@@ -208,28 +212,148 @@
   </div>
 
   <div class="container">
+    <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Map</mark></h4>
+    <img src="../../assets/images/Parks_Images/admiralty-park-map.png" width="100%" height="auto">
+  </div>
+
+  <div class="container">
     <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
     <style>
       body { margin: 0; }
       #map { height: 300px; }
     </style>
 
-<h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Map</mark></h4>
+  <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Location</mark></h4>
+
+  <aside>
+    <h2>JSON Response</h2>
+    <pre id="response"></pre>
+  </aside>
 
   <div id="map" />
     <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/@aws/amazon-location-client@1.x/dist/amazonLocationClient.js"></script>
+    <script src="https://unpkg.com/@aws/amazon-location-utilities-auth-helper@1.x/dist/amazonLocationAuthHelper.js"></script>
     <script>
-      const apiKey = "deez nuts";
+      const apiKey = "";
       const mapName = "NParks_Map";
+      const placesName = "NParks_Test";
       const region = "ap-southeast-1";
 
-      const map = new maplibregl.Map({
-        container: "map",
-        style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
-        center: [103.78069406466989, 1.44674655352457],
-        zoom: 14
-      });
-      map.addControl(new maplibregl.NavigationControl(), "top-left");
+      // Initialize a map
+      async function initializeMap() {
+        const mlglMap = new maplibregl.Map({
+          container: "map", // HTML element ID of map element
+          center: [103.78069406466989, 1.44674655352457], // Initial map centerpoint
+          zoom: 15, // Initial map zoom
+          style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor?key=${apiKey}`,
+        });
+
+        // Add navigation control to the top left of the map
+        mlglMap.addControl(new maplibregl.NavigationControl(), "top-left");
+        
+        return mlglMap;
+      }
+
+      async function calculateRoute(userLocation, destination) {
+        const apiKey = ''; // Replace with your actual API key
+        const calculatorName = 'Nparks'; // Replace with your route calculator name
+        const region = 'ap-southeast-1'; // Replace with your AWS region
+
+        const url = `https://routes.geo.${region}.amazonaws.com/v0/calculators/${calculatorName}/calculate/route`;
+
+        const requestBody = {
+          DeparturePosition: userLocation, // [longitude, latitude]
+          DestinationPosition: destination, // [longitude, latitude]
+          TravelMode: 'Car', // Or any other travel mode
+        };
+
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey
+          },
+          body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return await response.json();
+      }
+      
+      // Get user's current position and calculate the route
+      navigator.geolocation.getCurrentPosition(async position => {
+        const userLocation = [position.coords.longitude, position.coords.latitude];
+        const destination = [103.78069406466989, 1.44674655352457]; // Replace with your destination coordinates
+
+        try {
+          const routeData = await calculateRoute(userLocation, destination);
+          console.log(routeData); // Handle the route data
+          // Further code to process and display the route on the map
+        } catch (error) {
+          console.error('Error calculating route:', error);
+        }
+      }, err => console.error('Error getting user location:', err));
+
+      async function main() {
+        // Create an authentication helper instance using an API key
+        const authHelper = await amazonLocationAuthHelper.withAPIKey(apiKey);
+
+        // Initialize map and Amazon Location SDK client:
+        const map = await initializeMap();
+
+        const client = new amazonLocationClient.LocationClient({
+          region,
+          ...authHelper.getLocationClientConfig(), // Provides configuration required to make requests to Amazon Location
+        });
+
+        // On mouse click, display marker and get results:
+        map.on("click", async function (e) {
+          try{
+            // Remove any existing marker
+            if (marker) {
+              marker.remove();
+            }
+          } catch (error) {
+            
+          }
+
+          // Render a marker on clicked point
+          marker = new maplibregl.Marker().setLngLat([e.lngLat.lng, e.lngLat.lat]).addTo(map);
+          // Set up parameters for search call
+          let params = {
+            IndexName: placesName,
+            Position: [e.lngLat.lng, e.lngLat.lat],
+            Language: "en",
+            MaxResults: "5",
+          };
+
+          // Set up command to search for results around clicked point
+          const searchCommand = new amazonLocationClient.SearchPlaceIndexForPositionCommand(params);
+
+          try {
+            // Make request to search for results around clicked point
+            const data = await client.send(searchCommand);
+
+            // Write JSON response data to HTML
+            document.querySelector("#response").textContent = JSON.stringify(data, undefined, 2);
+
+            // Display place label in an alert box
+            alert(data.Results[0].Place.Label);
+          } catch (error) {
+            // Write JSON response error to HTML
+            document.querySelector("#response").textContent = JSON.stringify(error, undefined, 2);
+
+            // Display error in an alert box
+            alert("There was an error searching.");
+          }
+        });
+      }
+
+      main();
     </script>
   </div>
 </body>

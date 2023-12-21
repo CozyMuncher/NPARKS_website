@@ -1,1 +1,6 @@
 api-key.txt
+
+# amplify
+node_modules
+.amplify
+amplifyconfiguration*

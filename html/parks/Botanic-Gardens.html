@@ -11,6 +11,11 @@
   <title>NParks</title>
 </head>
 <body>
+  <style>
+    body{
+      background-color: #98D4BB;
+    }
+  </style>
   <!-- #region header-->
   <header>
     <!-- Logo -->
@@ -201,18 +206,23 @@
   </div>
 
   <div class="container">
+    <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Map</mark></h4>
+    <img src="../../assets/images/Parks_Images/Map SBG Current 300623 V2.jpg" width="100%" height="auto">
+  </div>
+
+  <div class="container">
     <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
     <style>
       body { margin: 0; }
       #map { height: 300px; }
     </style>
 
-<h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Map</mark></h4>
+<h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Location</mark></h4>
 
   <div id="map" />
     <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
     <script>
-      const apiKey = "api key here";
+      const apiKey = "";
       const mapName = "NParks_Map";
       const region = "ap-southeast-1";
 
