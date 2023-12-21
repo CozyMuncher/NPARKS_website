@@ -241,8 +241,8 @@
         const authHelper = await amazonLocationAuthHelper.withIdentityPoolId(identityPoolId);
         const map = new maplibregl.Map({
           container: "map",
-          center: [103.951494, 1.378692],
-          zoom: 10,
+          center: [103.78064170954637, 1.4465435114846568],
+          zoom: 14,
           style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor`,
           ...authHelper.getMapAuthenticationOptions(),
         });
