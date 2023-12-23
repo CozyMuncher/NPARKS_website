@@ -47,35 +47,37 @@
     <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
     <style>
       body { margin: 0; }
-      #map { height: 300px; }
+      #map { height: 750px; }
     </style>
 
-<h4 style="text-align: center; font-size: 30px; color: #2B512F;">Map</h4>
-    <!-- CSS dependencies -->
-    <link href="https://cdn.amplify.aws/packages/maplibre-gl/1.15.2/maplibre-gl.css" rel="stylesheet" integrity="sha384-DrPVD9GufrxGb7kWwRv0CywpXTmfvbKOZ5i5pN7urmIThew0zXKTME+gutUgtpeD" crossorigin="anonymous" referrerpolicy="no-referrer"></link>
+    <div id="map">
+      <h4 style="text-align: center; font-size: 30px; color: #2B512F;">Map</h4>
+      <!-- CSS dependencies -->
+      <link href="https://cdn.amplify.aws/packages/maplibre-gl/1.15.2/maplibre-gl.css" rel="stylesheet" integrity="sha384-DrPVD9GufrxGb7kWwRv0CywpXTmfvbKOZ5i5pN7urmIThew0zXKTME+gutUgtpeD" crossorigin="anonymous" referrerpolicy="no-referrer"></link>
 
-    <!-- JavaScript dependencies -->
-    <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
-    <script src="https://unpkg.com/@aws/amazon-location-utilities-auth-helper@1.x/dist/amazonLocationAuthHelper.js"></script>
-    <script>
-      const identityPoolId = "ap-southeast-1:181f38fd-f839-46cb-8149-113cb98b3751"
-      const mapName = "NParks_Map"
-      const region = "ap-southeast-1";
+      <!-- JavaScript dependencies -->
+      <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
+      <script src="https://unpkg.com/@aws/amazon-location-utilities-auth-helper@1.x/dist/amazonLocationAuthHelper.js"></script>
+      <script>
+        const identityPoolId = "ap-southeast-1:181f38fd-f839-46cb-8149-113cb98b3751"
+        const mapName = "NParks_Map"
+        const region = "ap-southeast-1";
 
-      async function initializeMap() {
-        const authHelper = await amazonLocationAuthHelper.withIdentityPoolId(identityPoolId);
-        const map = new maplibregl.Map({
-          container: "map",
-          center: [103.80873603835947, 1.3739737348400558],
-          zoom: 14,
-          style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor`,
-          ...authHelper.getMapAuthenticationOptions(),
-        });
-        map.addControl(new maplibregl.NavigationControl(), "top-left");
-      }
+        async function initializeMap() {
+          const authHelper = await amazonLocationAuthHelper.withIdentityPoolId(identityPoolId);
+          const map = new maplibregl.Map({
+            container: "map",
+            center: [103.80873603835947, 1.3739737348400558],
+            zoom: 10,
+            style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor`,
+            ...authHelper.getMapAuthenticationOptions(),
+          });
+          map.addControl(new maplibregl.NavigationControl(), "top-left");
+        }
 
-      initializeMap();
-    </script>
+        initializeMap();
+      </script>
+    </div>
   </div>
   <!-- #endregion -->
 
