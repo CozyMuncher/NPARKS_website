@@ -23,8 +23,8 @@
       <table>
         <tr>
           <td><p>ㅤ</p></td>
-          <td><img src="../../assets/images/logo.png" width="40px" height="auto"></td>
-          <td><h3>NParks</h3></td>
+          <td><img src="../../assets/images/logog.png" width="40px" height="auto"></td>
+          <td><h3>ParkFinder</h3></td>
         </tr>
       </table>
     </a>
@@ -228,6 +228,10 @@
           ...authHelper.getMapAuthenticationOptions(),
         });
         map.addControl(new maplibregl.NavigationControl(), "top-left");
+
+        var marker = new maplibregl.Marker()
+        .setLngLat([103.73183534021483, 1.3344207914846158]) // Replace with your desired coordinates
+        .addTo(map);
       }
 
       initializeMap();

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+  <title>NParks</title>
+</head>
+<body>
+  <style>
+    body{
+      background-color: #98D4BB;
+    }
+  </style>
+  <!-- #region header-->
+  <header>
+    <!-- Logo -->
+    <a href="../../index.html" class="logo">
+      <table>
+        <tr>
+          <td><p>ㅤ</p></td>
+          <td><img src="../../assets/images/logog.png" width="40px" height="auto"></td>
+          <td><h3>ParkFinder</h3></td>
+        </tr>
+      </table>
+    </a>
+    <!-- Hamburger icon -->
+    <input class="side-menu" type="checkbox" id="side-menu"/>
+    <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+    <!-- Menu -->
+    <nav class="nav">
+        <ul class="menu">
+            <li><a href="../parks.html">Parks & Trails</a></li>
+            <li><a href="../maps.html">Maps</a> </li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../chat.html">Chat</a></li>
+        </ul>
+    </nav>
+  </header>
+  <!-- #endregion -->
+
+  <!-- #park-details -->
+  <h2 style="text-align: center; font-size: 30px; color: #2B512F;">Woodlands Waterfront Park</h2>
+
+  <!-- #region infomation-->
+  <div class="container">
+    <style>
+        .container {
+            padding: 25px;
+        }
+        .custom-table {
+          width: 100%;
+        }
+        .custom-column {
+          width: 50%;
+        }
+    </style>
+    <table class="custom-table">
+      <tr>
+        <td class="custom-column" style="border-bottom: 1px solid #000; ">
+          <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Location</mark></h4>
+        </td>
+        <td class="custom-column" style="border-bottom: 1px solid #000; ">
+          <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Infomation</mark></h4>
+        </td>
+      </tr>
+      <tr>
+        <td class="custom-column">
+          <p style="text-align: center;">Near Admiralty Park</p>
+        </td>
+        <td class="custom-column">
+          <p style="text-align: center;"><b>Difficulty Level:</b> Easy</p>
+          <p style="text-align: center;"><b>Distance:</b>  2km</p>
+          <p style="text-align: center;"><b>Walking time:</b> 1-2h</p>
+          <p style="text-align: center;"><b>Cycling time:</b> ~45min</p>
+          <p style="text-align: center;"><b>Accessibility Info:</b> Wheelchair-friendly, Playgrounds</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  
+
+  <div class="container">
+    <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Map</mark></h4>
+    <img src="../../assets/images/Parks_Images/Screenshot 2024-01-10 223439.png" width="100%" height="auto">
+  </div>
+
+  <div class="container">
+    <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
+    <style>
+      body { margin: 0; }
+      #map { height: 300px; }
+    </style>
+
+  <h4 style="text-align: center; font-size: 30px; color: #2B512F;"><mark>Location</mark></h4>
+
+  <div id="map" />
+    <!-- CSS dependencies -->
+    <link href="https://cdn.amplify.aws/packages/maplibre-gl/1.15.2/maplibre-gl.css" rel="stylesheet" integrity="sha384-DrPVD9GufrxGb7kWwRv0CywpXTmfvbKOZ5i5pN7urmIThew0zXKTME+gutUgtpeD" crossorigin="anonymous" referrerpolicy="no-referrer"></link>
+
+    <!-- JavaScript dependencies -->
+    <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/@aws/amazon-location-utilities-auth-helper@1.x/dist/amazonLocationAuthHelper.js"></script>
+    <script>
+      const identityPoolId = "ap-southeast-1:181f38fd-f839-46cb-8149-113cb98b3751"
+      const mapName = "NParks_Map"
+      const region = "ap-southeast-1";
+
+      async function initializeMap() {
+        const authHelper = await amazonLocationAuthHelper.withIdentityPoolId(identityPoolId);
+        const map = new maplibregl.Map({
+          container: "map",
+          center: [103.78045864218981, 1.4530528970793475],
+          zoom: 14,
+          style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor`,
+          ...authHelper.getMapAuthenticationOptions(),
+        });
+        map.addControl(new maplibregl.NavigationControl(), "top-left");
+
+        var marker = new maplibregl.Marker()
+        .setLngLat([103.78045864218981, 1.4530528970793475]) // Replace with your desired coordinates
+        .addTo(map);
+      }
+      
+      initializeMap();
+    </script>
+  </div>
+</body>
+</html>

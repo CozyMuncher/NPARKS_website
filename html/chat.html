@@ -1,41 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../style.css" />
-  <link
-    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    rel="stylesheet"
-  />
-  <title>NParks</title>
-</head>
-<body>
-  <!-- #region header-->
-  <header>
-    <!-- Logo -->
-    <a href="../index.html" class="logo">
-      <table>
-        <td><p>ㅤ</p></td>
-        <td><img src="../assets/images/logo.png" width="40px" height="auto"></td>
-        <td><h3>NParks</h3></td>
-      </table>
-    </a>
-    <!-- Hamburger icon -->
-    <input class="side-menu" type="checkbox" id="side-menu"/>
-    <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
-    <!-- Menu -->
-    <nav class="nav">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>NParks</title>
+  </head>
+  <body>
+    <!-- #region header-->
+    <header>
+      <!-- Logo -->
+      <a href="../index.html" class="logo">
+        <table>
+          <td><p>ㅤ</p></td>
+          <td><img src="../assets/images/logog.png" width="40px"
+              height="auto"></td>
+          <td><h3>ParkFinder</h3></td>
+        </table>
+      </a>
+      <!-- Hamburger icon -->
+      <input class="side-menu" type="checkbox" id="side-menu" />
+      <label class="hamb" for="side-menu"><span
+          class="hamb-line"></span></label>
+      <!-- Menu -->
+      <nav class="nav">
         <ul class="menu">
-            <li><a href="parks.html">Parks & Trails</a></li>
-            <li><a href="maps.html">Maps</a> </li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="chat.html">Chat</a></li>
+          <li><a href="parks.html">Parks & Trails</a></li>
+          <li><a href="maps.html">Maps</a> </li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="chat.html">Chat</a></li>
         </ul>
-    </nav>
-  </header>
-  <!-- #endregion -->
+      </nav>
+    </header>
+    <!-- #endregion -->
 
-</body>
+    <div class="chat-container">
+        <div class="chat-box">
+            <div id="chat-output"></div>
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script>
+      let userLocation = {};
+      document.addEventListener('DOMContentLoaded', () => {
+        const chatOutput = document.getElementById('chat-output');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+
+        // Function to add a message to the chat
+        function addMessage(message, isUser = false) {
+          const messageDiv = document.createElement('div');
+          messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+          messageDiv.textContent = message;
+          chatOutput.appendChild(messageDiv);
+          chatOutput.scrollTop = chatOutput.scrollHeight; // Scroll to the bottom
+        }
+
+          sendButton.addEventListener('click', () => {
+          let userMessage = document.getElementById('userInput').value;
+          document.getElementById('userInput').value = ''; // Clear input field after sending message
+          if (userMessage.trim() !== '') {
+              addMessage('You: ' + userMessage, true); // User's message
+
+              // Call getLocation() when the page loads
+              window.onload = getLocation;
+
+              fetch('http://localhost:5000/process', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ 
+                      input: userMessage,
+                      location: userLocation // Send location along with the user input
+                  }),
+              })
+              .then(response => response.json())
+              .then(data => {
+                  var chatOutput = document.getElementById('chat-output');
+                  // Removed the line that explicitly adds the user message to the chat output
+                  chatOutput.innerHTML += "<div class=\"message ai-message\">AI: " + data.response + "</div>"; // Display the server's response
+              })
+              .catch((error) => {
+                  console.error('Error:', error);
+              });
+          }
+      });
+
+      function addMessage(message, isUser = false) {
+          const messageDiv = document.createElement('div');
+          messageDiv.classList.add('message', isUser ? 'user-message' : 'ai-message');
+          messageDiv.innerText = message;
+          
+          const chatOutput = document.getElementById('chat-output');
+          chatOutput.appendChild(messageDiv);
+          chatOutput.scrollTop = chatOutput.scrollHeight; // Scroll to the bottom
+      }
+    });  
+
+
+
+      // Function to get user location
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            userLocation = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+                }, (error) => {
+                    console.error('Error Code = ' + error.code + ' - ' + error.message);
+                });
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }
+
+      userInput.addEventListener('keypress', function(event) {
+          if (event.key === 'Enter') {
+              event.preventDefault(); // Prevent the default action of the Enter key
+              sendButton.click(); // Trigger the click event of the send button
+          }
+      });
+    </script>
+
+    <style>
+        .chat-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Adjust as needed */
+        }
+
+        .chat-box {
+            width: 300px; /* Adjust as needed */
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        #chat-output {
+            width: 100%;
+            height: 300px; /* Adjust as needed */
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            overflow-y: scroll;
+        }
+
+        #userInput {
+            width: calc(100% - 60px);
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: #4CAF50; /* Adjust color as needed */
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        body{
+          background-color: #98D4BB;
+        }
+
+        .message {
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #DCF8C6; /* Light green background for user messages */
+            align-self: flex-end; /* Align user messages to the right */
+            margin-left: auto;
+        }
+
+        .ai-message {
+            background-color: #AED581; /* Different shade of green for AI messages */
+            align-self: flex-start; /* Align AI messages to the left */
+        }
+
+        #chat-output {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+    </style>
+  </body>
 </html>

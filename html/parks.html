@@ -1,89 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../style.css" />
-  <link
-    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    rel="stylesheet"
-  />
-  <title>NParks</title>
-</head>
-<body>
-  <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet" />
+    <title>NParks</title>
+  </head>
+  <body>
+    <style>
     body{
       background-color: #98d4bb;
     }
   </style>
-  <!-- #region header-->
-  <header>
-    <!-- Logo -->
-    <a href="../index.html" class="logo">
-      <table>
-        <td><p>ㅤ</p></td>
-        <td><img src="../assets/images/logo.png" width="40px" height="auto"></td>
-        <td><h3>NParks</h3></td>
-      </table>
-    </a>
-    <!-- Hamburger icon -->
-    <input class="side-menu" type="checkbox" id="side-menu"/>
-    <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
-    <!-- Menu -->
-    <nav class="nav">
+    <!-- #region header-->
+    <header>
+      <!-- Logo -->
+      <a href="../index.html" class="logo">
+        <table>
+          <td><p>ㅤ</p></td>
+          <td><img src="../assets/images/logog.png" width="40px"
+              height="auto"></td>
+          <td><h3>ParkFinder</h3></td>
+        </table>
+      </a>
+      <!-- Hamburger icon -->
+      <input class="side-menu" type="checkbox" id="side-menu" />
+      <label class="hamb" for="side-menu"><span
+          class="hamb-line"></span></label>
+      <!-- Menu -->
+      <nav class="nav">
         <ul class="menu">
-            <li><a href="parks.html">Parks & Trails</a></li>
-            <li><a href="maps.html">Maps</a> </li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="chat.html">Chat</a></li>
+          <li><a href="parks.html">Parks & Trails</a></li>
+          <li><a href="maps.html">Maps</a> </li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="chat.html">Chat</a></li>
         </ul>
-    </nav>
-  </header>
-  <!-- #endregion -->
+      </nav>
+    </header>
+    <!-- #endregion -->
 
-  <!-- #region banner -->
-  <!-- <div class="container">
-    <style>
-      .container{
-        padding: 25px;
-      }
-      .text_container{
-        padding: 25px;
-        background-color: #90ee90;
-        color: black;
-      }
-    </style>
-      <div class="banner">
-        <img src="../assets/images/park_header.jpeg" width="100%" height="auto">
-        <div class="bottom-left">
-          <p style="text-align: left; color: #2B512F; background-color: white;">Singapore is a city nestled amid lush greenery found along our roadside and parks.</p>
-          <p></p>
-          <p style="text-align: left; color: #2B512F; background-color: white;">Close to the city centre is the Singapore Botanic Gardens, spanning an area of 74 hectares. With a heritage of more than 150 years, the Gardens has been popular with both residents and overseas visitors.</p>
-          <p style="text-align: left; color: #2B512F; background-color: white;">Adding to the verdant landscape are the many parks, park connectors, nature reserves, heritage roads and heritage trees found across Singapore which provide for a unique experience of the island’s natural beauty.</p>
-          <p style="text-align: left; color: #2B512F; background-color: white;">The Park Connector Network is an island-wide network of linear open spaces around major residential areas, linking up parks and nature sites in Singapore, allowing everyone to enjoy the splendour of these green spaces.</p>    
-          <p style="text-align: left; color: #2B512F; background-color: white;">Mature trees are a natural heritage of Singapore and serve as important green landmarks for our island state. Designated heritage trees and heritage roads will give you a meaningful encounter with Singapore’s natural heritage and foster a greater appreciation of the nation’s biodiversity and history.</p>
-          <p style="text-align: left; color: #2B512F; background-color: white;">Besides the greenery traditionally found on along our roads and in our parks and nature reserves, we now also have skyrise greenery - green roofs and vertical greenery that extend and almost look like gardens in the sky.</p>
-          <p style="text-align: left; color: #2B512F; background-color: white;">Come explore and learn more about these things that make Singapore our City in Nature.</p>
-        </div>
-    </div> -->
-  <!-- #endregion -->
+    <!-- #region parksSearchQuery -->
+    <div class="container">
+      <h2
+        style="text-align: center; font-size: 30px; color: #2B512F;">Parks</h2>
+      <div id="search-container">
+        <input type="text" id="searchInput" placeholder="Search..."
+          oninput="search()">
+      </div>
 
-  <!-- #region parksSearchQuery -->
-  <div class="container">
-    <div id="search-container">
-      <input type="text" id="searchInput" placeholder="Search..." oninput="search()">
+      <div id="result-container">
+        <ul id="itemList">
+          <li><a href="parks/Admiralty-Park.html"
+              style="text-decoration: none;"><div class="item-container"><div
+                  class="item"><p style="color:black;">Admiralty
+                    Park</p></div></div></a></li>
+          <li><a href="parks/Botanic-Gardens.html"
+              style="text-decoration: none;"><div class="item-container"><div
+                  class="item"><p style="color:black;">Botanic
+                    Gardens</p></div></div></a></li>
+          <li><a href="parks/Fort-Canning-Park.html"
+              style="text-decoration: none;"><div class="item-container"><div
+                  class="item"><p style="color:black;">Fort Canning
+                    Park</p></div></div></a></li>
+          <li><a href="parks/Jurong-Lake-Gardens.html"
+              style="text-decoration: none;"><div class="item-container"><div
+                  class="item"><p style="color:black;">Jurong Lake
+                    Gardens</p></div></div></a></li>
+        </ul>
+      </div>
     </div>
 
-    <div id="result-container">
-      <ul id="itemList">
-        <li><a href="parks/Admiralty-Park.html" style="text-decoration: none;"><div class="item-container"><div class="item"><p style="color:black;">Admiralty Park</p></div></div></a></li>
-        <li><a href="parks/Botanic-Gardens.html" style="text-decoration: none;"><div class="item-container"><div class="item"><p style="color:black;">Botanic Gardens</p></div></div></a></li>
-        <li><a href="parks/Fort-Canning-Park.html" style="text-decoration: none;"><div class="item-container"><div class="item"><p style="color:black;">Fort Canning Park</p></div></div></a></li>
-        <li><a href="parks/Jurong-Lake-Gardens.html" style="text-decoration: none;"><div class="item-container"><div class="item"><p style="color:black;">Jurong Lake Gardens</p></div></div></a></li>
-      </ul>
-    </div>
+    <div class="container">
+      <h2
+        style="text-align: center; font-size: 30px; color: #2B512F;">Routes</h2>
+      <div id="search-container2">
+        <input type="text" id="searchInput2" placeholder="Search..."
+          oninput="search2()">
+      </div>
 
+      <div id="result-container">
+        <ul id="itemList2">
+          <li><a href="routes/Woodlands-Waterfront.html"
+              style="text-decoration: none;"><div class="item-container"><div
+                  class="item"><p style="color:black;">Woodlands Waterfront Park</p></div></div></a></li>
+        </ul>
+      </div>
+    </div>
     <style>
       /* Add some basic styling */
       #search-container {
@@ -93,12 +99,37 @@
         margin: 20px 0;
       }
 
+      #search-container2 {
+        text-align: center;
+        color: black;
+        position: relative;
+        margin: 20px 0;
+      }
+
       #result-container {
         margin-top: 20px;
         color: black;
+        border-radius: 5px;
+      }
+
+      #result-container2 {
+        margin-top: 20px;
+        color: black;
+        border-radius: 5px;
       }
 
       #searchInput {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        outline: none;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s, border-color 0.3s;
+      }
+
+      #searchInput2 {
         width: 100%;
         padding: 10px;
         border: 1px solid #ccc;
@@ -115,7 +146,10 @@
       }
       
       .item-container {
-      border: 1px solid grey; /* Grey border for the item container */
+        border: 1px solid grey; /* Existing grey border for the item container */
+        padding: 10px; /* Existing padding inside each item container */
+        background-color: #E5DBD9; /* Existing background color */
+        border-radius: 10px; /* Add rounded corners. Adjust the value as needed */
       }
 
       .item {
@@ -151,7 +185,6 @@
         });
       }
     </script>
-  </div>
-  <!-- #endregion -->
-</body>
+    <!-- #endregion -->
+  </body>
 </html>
