@@ -11,6 +11,30 @@
   <title>NParks</title>
 </head>
 <body>
+  <button id="backButton">ㅤ<ㅤ</button>
+  
+  <style>
+    body{
+      background-color: #98D4BB;
+    }
+    #backButton {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1000; /* Ensures the button stays above other elements */
+        padding: 10px 10px;
+        border-radius: 20px;
+        margin: 5px;
+        background-color: #9dc183;
+    }
+
+  </style>
+  <script>
+    document.getElementById('backButton').addEventListener('click', function() {
+        window.history.back();
+    });
+
+  </script>
   <style>
     body{
       background-color: #98D4BB;

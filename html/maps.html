@@ -47,7 +47,10 @@
     <link href="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.css" rel="stylesheet" />
     <style>
       body { margin: 0; }
-      #map { height: 750px; }
+      #map {
+          width: 90vw; /* Set the width to 100% of the viewport width */
+          height: 90vw; /* Set the height equal to the width */
+      }
     </style>
 
     <h4 style="text-align: center; font-size: 30px; color: #2B512F;">Map</h4>
@@ -74,6 +77,26 @@
             ...authHelper.getMapAuthenticationOptions(),
           });
           map.addControl(new maplibregl.NavigationControl(), "top-left");
+
+          var marker = new maplibregl.Marker()
+          .setLngLat([103.78064170954637, 1.4465435114846568]) // Replace with your desired coordinates
+          .addTo(map);
+
+          var marker = new maplibregl.Marker()
+          .setLngLat([103.81639628261368, 1.3150167065491134]) // Replace with your desired coordinates
+          .addTo(map);
+          
+          var marker = new maplibregl.Marker()
+          .setLngLat([103.84648706934998, 1.294183080117831]) // Replace with your desired coordinates
+          .addTo(map);
+
+          var marker = new maplibregl.Marker()
+          .setLngLat([103.73183534021483, 1.3344207914846158]) // Replace with your desired coordinates
+          .addTo(map);
+
+          var marker = new maplibregl.Marker()
+          .setLngLat([103.78045864218981, 1.4530528970793475]) // Replace with your desired coordinates
+          .addTo(map);
         }
 
         initializeMap();

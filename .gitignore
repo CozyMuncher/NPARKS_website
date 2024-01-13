@@ -1,5 +1,5 @@
 *.txt
-*.py
+data_generator.py
 *.csv
 *.joblib
 

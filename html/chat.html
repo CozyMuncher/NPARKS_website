@@ -50,6 +50,23 @@
 
     <script>
       let userLocation = {};
+      // Function to get user location
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            userLocation = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+                }, (error) => {
+                    console.error('Error Code = ' + error.code + ' - ' + error.message);
+                });
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+      }
+      
+      getLocation()
       document.addEventListener('DOMContentLoaded', () => {
         const chatOutput = document.getElementById('chat-output');
         const userInput = document.getElementById('userInput');
@@ -105,25 +122,6 @@
           chatOutput.scrollTop = chatOutput.scrollHeight; // Scroll to the bottom
       }
     });  
-
-
-
-      // Function to get user location
-      function getLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            userLocation = {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude
-                    };
-                }, (error) => {
-                    console.error('Error Code = ' + error.code + ' - ' + error.message);
-                });
-            } else {
-                console.log("Geolocation is not supported by this browser.");
-            }
-        }
-
       userInput.addEventListener('keypress', function(event) {
           if (event.key === 'Enter') {
               event.preventDefault(); // Prevent the default action of the Enter key
