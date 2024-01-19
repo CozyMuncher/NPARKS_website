@@ -16,6 +16,17 @@
     body{
       background-color: #98D4BB;
     }
+
+    .custom-marker {
+        background-color: red; /* Your desired color */
+        width: 15px; /* Marker width */
+        height: 15px; /* Marker height */
+        border-radius: 50%; /* Circle shape */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white; /* Text color if you have any text inside the marker */
+    }
   </style>
   <!-- #region header-->
   <header>
@@ -63,11 +74,31 @@
       <script src="https://unpkg.com/maplibre-gl@3.x/dist/maplibre-gl.js"></script>
       <script src="https://unpkg.com/@aws/amazon-location-utilities-auth-helper@1.x/dist/amazonLocationAuthHelper.js"></script>
       <script>
+        const customMarkerEl = document.createElement('div');
+        customMarkerEl.className = 'custom-marker';
+        
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    var userLocation = [position.coords.longitude, position.coords.latitude];
+                    // Call the function to initialize the map with the user location
+                    initializeMap(userLocation);
+                }, (error) => {
+                    console.error('Error Code = ' + error.code + ' - ' + error.message);
+                });
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }
+
+      // Call getLocation to start the process
+      
         const identityPoolId = "ap-southeast-1:181f38fd-f839-46cb-8149-113cb98b3751"
         const mapName = "NParks_Map"
         const region = "ap-southeast-1";
+        getLocation();
 
-        async function initializeMap() {
+        async function initializeMap(userLocation) {
           const authHelper = await amazonLocationAuthHelper.withIdentityPoolId(identityPoolId);
           const map = new maplibregl.Map({
             container: "map",
@@ -77,6 +108,10 @@
             ...authHelper.getMapAuthenticationOptions(),
           });
           map.addControl(new maplibregl.NavigationControl(), "top-left");
+
+          var marker = new maplibregl.Marker()
+          .setLngLat([103.78045864218981, 1.4530528970793475]) // Replace with your desired coordinates
+          .addTo(map);
 
           var marker = new maplibregl.Marker()
           .setLngLat([103.78064170954637, 1.4465435114846568]) // Replace with your desired coordinates
@@ -94,12 +129,10 @@
           .setLngLat([103.73183534021483, 1.3344207914846158]) // Replace with your desired coordinates
           .addTo(map);
 
-          var marker = new maplibregl.Marker()
-          .setLngLat([103.78045864218981, 1.4530528970793475]) // Replace with your desired coordinates
+          var marker = new maplibregl.Marker({element: customMarkerEl})
+          .setLngLat(userLocation) // Replace with your desired coordinates
           .addTo(map);
         }
-
-        initializeMap();
       </script>
     </div>
   </div>

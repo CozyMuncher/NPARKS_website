@@ -11,7 +11,13 @@ def return_statement(response, location):
     data = location
     location = [data["longitude"], data["latitude"]]
     print(location)
-    if "recommend" in response.lower() and "park" in response.lower():
+    if (
+        "trail" in response.lower()
+        or "route" in response.lower()
+        and "recommend" in response.lower()
+    ):
+        return "I recommend Woodlands Waterfront Park trail for you. It is a sceneic route near the Straits of Johor. It is 2km long and takes about 1-2h to complete."
+    elif "recommend" in response.lower() and "park" in response.lower():
         return "Sure, I can recommend you a park. What are you looking for in a park (e.g. suitable for children, pets, wheelchair)?"
     elif "children" in response.lower():
         formatted_input = [1, 0, 0]
@@ -25,7 +31,10 @@ def return_statement(response, location):
     elif "hello" in response.lower():
         return "Hello, how can I help you today?"
     elif "far" in response.lower():
-        return get_park(get_park_cood(location))
+        return "Then, " + get_park(get_park_cood(location))
+    elif "admiralty park" in response.lower() and "place" in response.lower():
+        return "Some places you can visit in Admiralty Park are its playgrounds, Shiok Garden Hotpot & BBQ Buffet."
+    
     else:
         return "Sorry, I do not understand."
 

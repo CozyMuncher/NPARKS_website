@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "androidjs": "^2.0.6",
     "aws-amplify": "^6.0.8",
     "maplibre-gl": "^2.4.0",
     "maplibre-gl-js-amplify": "^4.0.0"
